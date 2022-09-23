@@ -1,4 +1,5 @@
 import {
+  MDBBadge,
   MDBBtn,
   MDBCol,
   MDBContainer,
@@ -11,7 +12,7 @@ import Constants from "../Constants";
 import { SocketContext } from "../context/SocketContext";
 
 export default function AdminRoom() {
-  const { socket, gameData } = useContext(SocketContext);
+  const { socket, gameData, data } = useContext(SocketContext);
   const [searchParams, setSearchParams] = useSearchParams();
   const [roomNumber, setRoomNumber] = useState(searchParams.get("room_number"));
   const [questions, setQuestions] = useState();
@@ -191,6 +192,27 @@ export default function AdminRoom() {
             RESET ALL INSTANCES
           </MDBBtn>
         </MDBCol>
+        <MDBCol>
+
+        {data ? (
+        data.map((d) => {
+          return (
+            <MDBRow className="align-items-center" key={d.socketId}>
+              <MDBCol style={{ textAlign: "end" }} size={6}>
+                <MDBBadge className="ms-2" color="danger">
+                  {d.username}
+                </MDBBadge>
+              </MDBCol>
+              <MDBCol className="text-center" size={6}>
+                    {((d.score / gameData.maxScore) * 100).toFixed(2)}%{" "}
+                    {d.finished ? "(Finished)" : <></>}
+              </MDBCol>
+            </MDBRow>
+          );
+        })
+      ) : (
+        <div></div>
+      )}</MDBCol>
       </MDBRow>
       <MDBRow className="align-items-center h-100">
         <MDBCol className="text-center">

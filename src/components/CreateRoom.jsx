@@ -11,7 +11,7 @@ import Constants from "../Constants";
 import { SocketContext } from "../context/SocketContext";
 
 export default function CreateRoom() {
-  const [roomCode, setRoomCode] = useState(3);
+  const [roomCode, setRoomCode] = useState("");
 
   const { socket } = useContext(SocketContext);
   let navigate = useNavigate();

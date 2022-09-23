@@ -11,8 +11,8 @@ import Constants from "../Constants";
 import { SocketContext } from "../context/SocketContext";
 
 export default function JoinRoom() {
-  const [roomCode, setRoomCode] = useState("3");
-  const [userName, setUserName] = useState("Guest_" + new Date().getTime());
+  const [roomCode, setRoomCode] = useState("");
+  const [userName, setUserName] = useState(""); //"Guest_" + new Date().getTime()
   const { socket } = useContext(SocketContext);
   let navigate = useNavigate();
 
